@@ -14,7 +14,5 @@ app.use(require('./routes/empresa'));
 app.use(require('./routes/auth'));
 
 
-
-
-app.listen(3000);
+app.listen(process.env.PORT);
 console.log('Server on port', 3000);
