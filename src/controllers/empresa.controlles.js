@@ -1,12 +1,16 @@
 const {Pool}= require('pg'); 
 
+// const pool = new Pool({
+//     host : 'localhost',
+//     user : 'postgres',
+//     password : 'eude123',	
+//     database : 'apppasantia',
+//     port : '5432'
+// } );
+
 const pool = new Pool({
-    host : 'localhost',
-    user : 'postgres',
-    password : 'eude123',	
-    database : 'apppasantia',
-    port : '5432'
-} );
+    connectionString: process.env.POSTGRES_URL + "?sslmode=require",
+  })
 
 const getEmpresas = async (req, res) => {
     try {

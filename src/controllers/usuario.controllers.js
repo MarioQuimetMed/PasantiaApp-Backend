@@ -2,13 +2,17 @@ const e = require('express');
 const {Pool}= require('pg'); 
 require('dotenv').config();
 
+// const pool = new Pool({
+//     host : process.env.PORT,
+//     user : process.env.DB_USERNAME,
+//     password : process.env.DB_PASSWORD,	
+//     database : process.env.DB_NAME,
+//     port : '5432'
+// } );
+
 const pool = new Pool({
-    host : process.env.PORT,
-    user : process.env.DB_USERNAME,
-    password : process.env.DB_PASSWORD,	
-    database : process.env.DB_NAME,
-    port : '5432'
-} );
+    connectionString: process.env.POSTGRES_URL + "?sslmode=require",
+  })
 
 const getUsuarios = async (req, res) => {
     try {
