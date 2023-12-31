@@ -27,11 +27,22 @@ const getUsuarios = async (req, res) => {
 const createUsuario = async (req, res) => {
     try {
         const { correo, contrasena, idRol } = req.body;
+        // Verificar si el correo ya existe en la base de datos
+        const correoExistente = await pool.query('SELECT * FROM Usuario WHERE correo = $1', [correo]);
+        if (correoExistente.rows.length > 0) {
+            return res.status(400).json({
+                message: 'Ya existe un usuario con este correo electrónico.',
+            });
+        }
+        // Si el correo no existe, proceder con la inserción
         const response = await pool.query('INSERT INTO Usuario (correo, contraseña, idRol) VALUES ($1, $2, $3)', [correo, contrasena, idRol]);
+        const respuesta = await pool.query('SELECT id FROM Usuario WHERE correo = $1 and contraseña = $2', [correo,contrasena]);
+        const id = respuesta.rows[0].id;
+
         res.json({
             message: 'Usuario creado exitosamente',
             body: {
-                user: { correo, contrasena, idRol }
+                user: { correo, contrasena, id, idRol }
             }
         });
     } catch (error) {
