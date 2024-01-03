@@ -10,7 +10,7 @@ const pool = new Pool({
 
 const storage = new Storage({
   projectId: 'macro-campaign-405503',
-  keyFilename: process.env.LLAVECLOUD || './credencial/macro-campaign-405503-543f528d0052.json' ,
+  keyFilename: process.env.LLAVECLOUD ,
 });
 
 const bucket = storage.bucket('curriculums-app-pa');
