@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+// Configuración de Multer para manejar la subida de archivos
+
+
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended: false})); 
@@ -11,6 +14,7 @@ app.use(require('./routes/rol'));
 app.use(require('./routes/estudiante'));
 app.use(require('./routes/empresa'));
 app.use(require('./routes/auth'));
+app.use(require('./routes/files'));
 
 
 app.listen(process.env.PORT);

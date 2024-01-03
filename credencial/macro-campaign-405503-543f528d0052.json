@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "macro-campaign-405503",
+  "private_key_id": "543f528d00524001cd1804f19f521f44b4fc560d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDV1yzupF5/1zVr\nL9AX6f19Ajx1nvgd8eWsaIFPy2/y6qYOM5c1Rfl5Vc45zDF2WO64ZMC1pqmcw/Yf\nbiNThD/1SKAnNLc5N3t38sCceQucUh1p+5y7dsCPuWnpM9KGes9iTrtR3dXk1tIb\nt/q1VxnOLoF+5fo2B63tJTzvq7CpVmMXL5yWu42ObtcmAX1oadGp0q7wVwJpoinp\ndJgmX2PeEQ4nkOqW02P6ZHASCOTAz/j6gu/ueNOKrAet87jsFTrJlytX4AzoZEOL\nR85nBHdhh3no0qXtVl3K17Yt0xZCelSyWY7LzRR0UYdckXBc00HQ1SfTpimoF/PF\nUCfGFsTFAgMBAAECggEAM9bbkiivrf8ueIMZR8rWRElX/c2haaT8IC0feAgh5foj\nclroY6ZIgbUe7t0E+qM5j+MA4qh6AsJwtpLdJoBvftdx179MUacVG/Fx5xzjByzS\n65/vEXUK3my886c3+JjqEHN0rraABV9chRK3SOHKJDUa+HfpDdMTw2MdIB73jz0r\nzWXxmjXN4efOJpfbQixnBppCkxJZmHrG/8haPtUVZpmlatzKbANTdRnCAyI1ezSD\n6qEk/AguvhQ0VO36VSnO+Rtpo37gbJLxT71CHePs+1jPdjyKQS4As+dXbdhSdOW2\njkgJLMWBTsUf2KBAKa8XjkvCV10cnmc922FbVXXawQKBgQD56h7ZTxM/bkFIbvvi\n1XBupw3FkvBaCDlynufN+3GISUCcf4vfa2UdITeMTmKHJEKsoz9OjM3Po17BvnP7\nRBndj07W0QyRUCJxXcNXvuWEVZr+ogNaEjOw+Ef1Uzri/IBC2bKIVPoDD+DXxcLH\n5jQiuK4/Zmw3PIul8x3yGiNloQKBgQDbDC6tWORh0iFTmt0hLRIyseyWdOMpmITA\n4r4QUF8CdbDOI3G3FehPsArt2lmVfmuOFK7c0ARqWw+FOfYrWm0jUV3epKz9Sp4K\nDDfa61hKZoIMWhbbCQOP7MDDvkNoQiWuXOad+Pf7cxzINtfMNjZt9GIpkAxGKzGd\nObZqchfEpQKBgB5aqVSLnjLeGV/K2x05/2XxNGMC7d6BkTiyxETofWmoPAjGFR8V\n1Dothqmr+5uec9q0GURZJcZKeX/eugeSxfF7LoA48+XSbdyHHurRbN8d5q120CFo\nhI7CGTta2JQpRwrXli+o4pTsoMqUYowVEdAFzmQ09H/hArUtSj3VnucBAoGAOXAz\nWS9DC8ePB55HN+jaqcJwGG/kFUcyIGYUkrCQiVOVHii7K9gpx6OQ6hfkf8fbqjEQ\nPUSqs7zXEAdH3sxia+1tIPGrjuufD2Fu0BAAYdoJZfXFon/1mCrrzSg6Ar+9o8Am\nlOvxEtV3iaSf56ObmC+KAf4MyeWPp/u3MqhiRSUCgYB6Ed0bYXVrZikyZYFZ969U\nHlE8RasKANcyNDoL1KjiteHUBpYjfWzj5FhrnPb9JB7FvoHpAl4sk4gFuJze/+Vc\n3y3ON+TkFKKpR5yHQwFcw8srcegq0ccEPo3ZHNuMhHkJSR8I8RjUwj3w3h7JAYy3\naWk+d+xjisYvNgk1/R5cMw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "apppasantia@macro-campaign-405503.iam.gserviceaccount.com",
+  "client_id": "117641204020519442460",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/apppasantia%40macro-campaign-405503.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
