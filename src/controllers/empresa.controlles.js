@@ -1,12 +1,5 @@
 const {Pool}= require('pg'); 
 
-// const pool = new Pool({
-//     host : 'localhost',
-//     user : 'postgres',
-//     password : 'eude123',	
-//     database : 'apppasantia',
-//     port : '5432'
-// } );
 
 const pool = new Pool({
     connectionString: process.env.POSTGRES_URL + "?sslmode=require",
@@ -33,16 +26,47 @@ const getEmpresa = async (req, res) => {
 
 const createEmpresa = async (req, res) => {
     try {
-        const { nombre, idUsuario } = req.body;
-        const response = await pool.query('INSERT INTO Empresa (nombre, idUsuario) VALUES ($1, $2)', [nombre, idUsuario]);
+        const { correo, contraseña, nombre} = req.body;
+        const idRol = 3; // Rol de empresa = 3
+
+        // Verificar si el correo ya existe en la base de datos
+        const correoExistente = await pool.query('SELECT * FROM Usuario WHERE correo = $1', [correo]);
+        if (correoExistente.rows.length > 0) {
+            return res.status(400).json({
+                message: 'Ya existe un usuario con este correo electrónico.',
+            });
+        }
+        // Crear el usuario
+        const createUserResponse = await pool.query(
+            'INSERT INTO Usuario (correo, contraseña,idRol) VALUES ($1, $2, $3) RETURNING id',
+            [correo, contraseña,idRol]
+        );
+        const idUsuario = createUserResponse.rows[0].id;
+        // Verificar si ya existe una Empresa con el mismo idUsuario
+        const estudianteExistente = await pool.query('SELECT * FROM Empresa WHERE idUsuario = $1', [idUsuario]);
+        if (estudianteExistente.rows.length > 0) {
+            return res.status(400).json({
+                message: 'Ya existe la Empresa en el Sistema.',
+            });
+        }
+
+        // Si no existe, proceder con la inserción del estudiante
+        const response = await pool.query(
+            'INSERT INTO Empresa (nombre, idUsuario) VALUES ($1, $2)',
+            [nombre, idUsuario]
+        );
+
         res.json({
-            message: 'Empresa creada exitosamente',
-            body: {
-                empresa: {nombre, idUsuario}
-            }
+            message: 'Empresa Creada exitosamente',
+            Empresa: {
+                correo,
+                contraseña,
+                nombre,
+                idUsuario,
+            },
         });
     } catch (error) {
-        res.status(500).json({ message: 'Error al crear empresa', error: error.message });
+        res.status(500).json({ message: 'Error al crear estudiante', error: error.message });
     }
 };
 

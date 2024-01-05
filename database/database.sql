@@ -93,6 +93,7 @@ CREATE TABLE Publicacion (
     fechaInicio DATE NOT NULL,
     fechaFin DATE NOT NULL,
     idEmpresa INT NOT NULL,
+    requisitos Text,
     FOREIGN KEY (idEmpresa)
         REFERENCES Empresa (id)
         ON UPDATE CASCADE ON DELETE CASCADE
@@ -158,24 +159,6 @@ INSERT INTO Area (idCarrera, nombre) VALUES
 (3, 'Diseño Mecánico'),
 (4, 'Electrónica');
 
-CREATE TABLE Requisito (
-    id SERIAL PRIMARY KEY,
-    idArea INT NOT NULL,
-    nombre VARCHAR(40) NOT NULL,
-    FOREIGN KEY (idArea)
-        REFERENCES Area (id)
-        ON UPDATE CASCADE ON DELETE CASCADE
-);
-
--- Datos para la tabla Requisito
-INSERT INTO Requisito (idArea, nombre) VALUES
-(1, 'JavaScript'),
-(1, 'HTML'),
-(2, 'Java'),
-(2, 'Kotlin'),
-(3, 'AutoCAD'),
-(4, 'SolidWorks'),
-(5, 'Circuitos');
 
 CREATE TABLE Estudiante_Carrera (
     idEstudiante INT NOT NULL,
@@ -194,22 +177,17 @@ INSERT INTO Estudiante_Carrera (idEstudiante, idCarrera) VALUES
 (3, 3),
 (4, 4);
 
-CREATE TABLE Pub_Requisitos (
+CREATE TABLE PubArea (
     idPublicacion INT NOT NULL,
-    idRequisito INT NOT NULL,
+    idArea INT NOT NULL,
+    idCarrera INT NOT NULL,
     FOREIGN KEY (idPublicacion)
         REFERENCES Publicacion (id),
-    FOREIGN KEY (idRequisito)
-        REFERENCES Requisito (id)
+    FOREIGN KEY (idArea)
+        REFERENCES Area (id)
         ON UPDATE CASCADE ON DELETE CASCADE    
+    FOREIGN KEY (idCarrera)
+        REFERENCES Area (idCarrera)
+        ON UPDATE CASCADE ON DELETE CASCADE 
 );
 
--- Datos para la tabla Pub_Requisitos
-INSERT INTO Pub_Requisitos (idPublicacion, idRequisito) VALUES
-(1, 1),
-(1, 2),
-(2, 3),
-(2, 4),
-(3, 5),
-(4, 6),
-(4, 7);
