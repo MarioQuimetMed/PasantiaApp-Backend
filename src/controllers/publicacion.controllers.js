@@ -6,7 +6,7 @@ const pool = new Pool({
 
   const getPublicaciones = async (req, res) => {
     try {
-        const response = await pool.query('SELECT publicacion.id, publicacion.nombre as nombrePub, TO_CHAR(fechaInicio, \'DD-MM-YYYY\') as fechaInicio, TO_CHAR(fechaFin, \'DD-MM-YYYY\') as fechaFin, idEmpresa ,Empresa.nombre as Empresa, requisitos, idArea, idCarrera FROM Publicacion,Empresa where Publicacion.idEmpresa = Empresa.id');
+        const response = await pool.query('SELECT publicacion.id, publicacion.nombre as nombrePub, TO_CHAR(fechaInicio, \'DD-MM-YYYY\') as fechaInicio, TO_CHAR(fechaFin, \'DD-MM-YYYY\') as fechaFin, idEmpresa ,Empresa.nombre as Empresa, requisitos, idArea,Area.nombre as Area, Publicacion.idCarrera , Carrera.nombre as Carrera FROM Publicacion,Empresa,Area,Carrera where Publicacion.idEmpresa = Empresa.id and Publicacion.idArea = Area.id and Area.idCarrera = Carrera.id');
         res.status(200).json(response.rows);
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener Publicaciones', error: error.message });
@@ -16,7 +16,9 @@ const pool = new Pool({
 const getPublicacion = async (req, res) => {
     try {
         const id = req.params.id;
-        const response = await pool.query('SELECT * FROM Publicacion WHERE id = $1', [id]);
+        const response = await pool.query('SELECT id,nombre,fechainicio,fechafin,idempresa FROM Publicacion WHERE id = $1', [id]);
+        const requisitos = await pool.query('SELECT requisitos FROM Publicacion WHERE id = $1', [id]);
+        const requisitosR = JSON.parse(requisitos.rows[0]);
         res.status(200).json(response.rows[0]);
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener Publicacion', error: error.message });
