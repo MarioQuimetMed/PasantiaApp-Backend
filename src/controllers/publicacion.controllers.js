@@ -16,9 +16,8 @@ const pool = new Pool({
 const getPublicacion = async (req, res) => {
     try {
         const id = req.params.id;
-        const response = await pool.query('SELECT id,nombre,fechainicio,fechafin,idempresa FROM Publicacion WHERE id = $1', [id]);
+        const response = await pool.query('SELECT * FROM Publicacion WHERE id = $1', [id]);
         const requisitos = await pool.query('SELECT requisitos FROM Publicacion WHERE id = $1', [id]);
-        const requisitosR = JSON.parse(requisitos.rows[0]);
         res.status(200).json(response.rows[0]);
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener Publicacion', error: error.message });
