@@ -4,9 +4,9 @@ const pool = new Pool({
     connectionString: process.env.POSTGRES_URL + "?sslmode=require",
   })
 
-const getPublicaciones = async (req, res) => {
+  const getPublicaciones = async (req, res) => {
     try {
-        const response = await pool.query('SELECT * FROM Publicacion');
+        const response = await pool.query('SELECT publicacion.id, publicacion.nombre as nombrePub, TO_CHAR(fechaInicio, \'DD-MM-YYYY\') as fechaInicio, TO_CHAR(fechaFin, \'DD-MM-YYYY\') as fechaFin, idEmpresa ,Empresa.nombre as Empresa, requisitos, idArea, idCarrera FROM Publicacion,Empresa where Publicacion.idEmpresa = Empresa.id');
         res.status(200).json(response.rows);
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener Publicaciones', error: error.message });
@@ -33,6 +33,7 @@ const createPublicacion = async (req, res) => {
             'INSERT INTO Publicacion (nombre ,fechaInicio , fechaFin , idEmpresa , requisitos,idArea,idCarrera) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING id',
             [nombre ,fechaInicio , fechaFin , idEmpresa , requisitos,idArea,idCarrera]
         );
+    
 
         res.json({
             message: 'Publicacion Creada exitosamente',

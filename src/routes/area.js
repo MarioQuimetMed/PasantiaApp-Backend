@@ -5,6 +5,6 @@ const { createArea,getArea,getAreas} = require('../controllers/area.controllers'
 
 router.get('/areas', getAreas);
 router.post('/area', getArea);
-router.post('/area', createArea);
+router.post('/CrearArea', createArea);
 
 module.exports = router;
