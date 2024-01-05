@@ -53,8 +53,19 @@ const createPublicacion = async (req, res) => {
     }
 };
 
+const getMisPublicaciones = async (req, res) => {
+    try {
+        const{ idEmpresa } = req.body;
+        const response = await pool.query('SELECT * FROM Publicacion WHERE idEmpresa = $1', [idEmpresa]);
+        res.status(200).json(response.rows);
+    } catch (error) {
+        res.status(500).json({ message: 'Error al obtener Publicacion', error: error.message });
+    }
+}
+
 module.exports = {
     getPublicaciones,
     getPublicacion,
     createPublicacion,
+    getMisPublicaciones
 }
