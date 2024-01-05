@@ -15,9 +15,9 @@ const getAreas = async (req, res) => {
 
 const getArea = async (req, res) => {
     try {
-        const id = req.params.id;
-        const response = await pool.query('SELECT * FROM Area WHERE id = $1', [id]);
-        res.status(200).json(response.rows[0]);
+        const {idCarrera} = req.body;
+        const response = await pool.query('SELECT * FROM Area WHERE idCarrera = $1', [idCarrera]);
+        res.status(200).json(response.rows);
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener Area', error: error.message });
     }
